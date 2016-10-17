@@ -62,7 +62,6 @@ class ActivityGraph extends React.Component {
   render() {
     const {activity} = this.props;
 
-
     if (!activity) {
       return <p>No activity is selected... Select an activity to view the change over time.</p>
     }

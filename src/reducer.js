@@ -1,13 +1,14 @@
 import {combineReducers} from 'redux';
+import omit from 'lodash.omit';
+import * as constants from './constants';
 
 export default combineReducers({
-
   activities: combineReducers({
 
     byId: (state = {}, action = {}) => {
       switch (action.type) {
 
-        case 'add_activity':
+        case constants.ADD_ACTIVITY:
           return {
             ...state,
             [action.payload.id]: {
@@ -17,7 +18,10 @@ export default combineReducers({
             }
           };
 
-        case 'add_activity_stats':
+        case constants.REMOVE_ACTIVITY:
+          return omit(state, action.payload.id);
+
+        case constants.ADD_ACTIVITY_STATS:
           return {
             ...state,
             [action.payload.id]: {
@@ -40,8 +44,15 @@ export default combineReducers({
     selectedId: (state = null, action = {}) => {
       switch (action.type) {
 
-        case 'select_activity':
+        case constants.SELECT_ACTIVITY:
           return action.payload.id;
+
+        case constants.REMOVE_ACTIVITY:
+          if (action.payload.id === state) {
+            return null;
+          } else {
+            return state;
+          }
 
         default:
           return state;
@@ -50,7 +61,6 @@ export default combineReducers({
     }
 
   })
-
 });
 
 export const getActivity = (state, id) => state.activities.byId[id] || null;

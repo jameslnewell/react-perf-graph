@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getActivities, getSelectedActivity} from '../../reducer';
-import {createActivity, selectActivity} from '../../actions';
+import {createActivity, selectActivityById, removeActivityById} from '../../actions';
 import './index.css';
 
 const mapStateToProps = state => ({
@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   createActivity,
-  selectActivity
+  selectActivityById,
+  removeActivityById
 };
 
 class ActivityList extends React.Component {
@@ -23,8 +24,17 @@ class ActivityList extends React.Component {
     }
   }
 
+  handleRemove() {
+
+    if (!this.props.selectedActivity) {
+      return;
+    }
+
+    this.props.removeActivityById(this.props.selectedActivity.id);
+  }
+
   handleSelect(event) {
-    this.props.selectActivity(event.target.value);
+    this.props.selectActivityById(event.target.value);
   }
 
   render() {
@@ -34,7 +44,7 @@ class ActivityList extends React.Component {
 
         <h4>Activities</h4>
 
-        <select multiple className="activity-list" onChange={this.handleSelect.bind(this)} defaultValue={[selectedActivity.id]}>
+        <select multiple className="activity-list" onChange={this.handleSelect.bind(this)} defaultValue={selectedActivity ? [selectedActivity.id] : []}>
         {activities.map(activity => (
           <option key={activity.id} value={activity.id}>
             {activity.name}
@@ -43,6 +53,7 @@ class ActivityList extends React.Component {
         </select>
 
         <button onClick={this.handleAdd.bind(this)}>+ Add activity</button>
+        <button onClick={this.handleRemove.bind(this)}>+ Remove activity</button>
 
       </div>
     );

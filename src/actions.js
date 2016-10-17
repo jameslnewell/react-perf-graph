@@ -1,22 +1,29 @@
 import shortid from 'shortid';
+import * as constants from './constants';
 
 export const createActivity = name => ({
-  type: 'add_activity',
+  type: constants.ADD_ACTIVITY,
   payload: {
     id: shortid(),
     name
   }
 });
 
-export const selectActivity = id => ({
-  type: 'select_activity',
+export const selectActivityById = id => ({
+  type: constants.SELECT_ACTIVITY,
+  payload: {
+    id
+  }
+});
+export const removeActivityById = id => ({
+  type: constants.REMOVE_ACTIVITY,
   payload: {
     id
   }
 });
 
 export const addActivityStats = (id, stats) => ({
-  type: 'add_activity_stats',
+  type: constants.ADD_ACTIVITY_STATS,
   payload: {
     id,
     stats
