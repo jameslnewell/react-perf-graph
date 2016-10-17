@@ -69,8 +69,8 @@ class ActivityGraph extends React.Component {
     return (
       <div className="activity-graph">
         <Helmet title={activity.name}/>
-        <h1>{activity.name}</h1>
-        <h2>Render count</h2>
+        <h4>{activity.name}</h4>
+        <h5>Render count</h5>
 
         <LineChart width={600} height={600} margin={{top: 5, right: 30, left: 20, bottom: 5}} data={this.getGraphData()}>
           <XAxis dataKey="change"/>

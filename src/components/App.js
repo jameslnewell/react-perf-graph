@@ -9,6 +9,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <header className="site-header">react-perf-graph</header>
         <Helmet titleTemplate="react-perf-graph - %s" title="Graph the results of `react-addons-perf`."/>
         <TwoColumnLayout>
           <ActivityList/>
