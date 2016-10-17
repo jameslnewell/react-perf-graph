@@ -1,0 +1,13 @@
+
+.two-column-layout {
+  display: flex;
+}
+
+.two-column-layout__column {
+  padding: 1.5em;
+}
+
+.two-column-layout__column--primary {
+  flex-grow: 1;
+  border-left: 1px dotted #ccc;
+}

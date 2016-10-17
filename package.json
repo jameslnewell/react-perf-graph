@@ -1,0 +1,24 @@
+{
+  "name": "react-perf-graph",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "0.6.1"
+  },
+  "dependencies": {
+    "randomcolor": "^0.4.4",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "recharts": "^0.15.2",
+    "redux": "^3.6.0",
+    "shortid": "^2.2.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && surge --project ./build --domain react-perf-graph.surge.sh"
+  }
+}
