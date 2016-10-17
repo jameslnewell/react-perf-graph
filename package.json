@@ -9,6 +9,7 @@
     "randomcolor": "^0.4.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-helmet": "^3.1.0",
     "react-redux": "^4.4.5",
     "recharts": "^0.15.2",
     "redux": "^3.6.0",

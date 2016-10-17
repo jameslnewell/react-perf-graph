@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Helmet from 'react-helmet';
 import randomcolor from 'randomcolor';
 import {getSelectedActivity} from '../../reducer';
 import {addActivityStats} from '../../actions';
@@ -36,7 +37,7 @@ class ActivityGraph extends React.Component {
     }
 
     return this.props.activity.changes[0].stats.map(stat => stat['Owner > Component'])
-      // .filter((item, i) => i<5)
+      .filter((item, i) => i<5)
     ;
   }
 
@@ -68,6 +69,7 @@ class ActivityGraph extends React.Component {
 
     return (
       <div className="activity-graph">
+        <Helmet title={activity.name}/>
         <h1>{activity.name}</h1>
         <h2>Render count</h2>
 
