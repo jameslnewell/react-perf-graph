@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import randomcolor from 'randomcolor';
 import {getSelectedActivity} from '../../reducer';
 import {addActivityStats} from '../../actions';
-import {LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line} from 'recharts';
+import {LineChart, XAxis, YAxis, CartesianGrid, Legend, Line} from 'recharts';
 
 const mapStateToProps = (state, props) => ({
   activity: getSelectedActivity(state)
@@ -19,8 +19,8 @@ class ActivityGraph extends React.Component {
   getGraphData() {
     //TODO: filter by name
     const metric = 'Render count';
-    return this.props.activity.changes.map(change => ({
-      change: change.name,
+    return this.props.activity.changes.map((change, index) => ({
+      change: change.name || index,
       ...change.stats.reduce((accum, stat) => ({
         ...accum,
         [stat['Owner > Component']]: stat[metric]
@@ -37,7 +37,7 @@ class ActivityGraph extends React.Component {
     }
 
     return this.props.activity.changes[0].stats.map(stat => stat['Owner > Component'])
-      .filter((item, i) => i<5)
+      .filter((item, i) => i<10)
     ;
   }
 
@@ -76,7 +76,7 @@ class ActivityGraph extends React.Component {
           <XAxis dataKey="change"/>
           <YAxis/>
           <CartesianGrid strokeDasharray="6 6"/>
-          <Tooltip/>
+          {/* TODO: how to get the tooltip just showing the name of the line <Tooltip content={<CustomTooltip/>}/> */}
           <Legend />
           {this.getGraphLines().map(line => <Line type="monotone" dataKey={line} key={line} stroke={randomcolor()}/>)}
         </LineChart>
