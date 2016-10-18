@@ -44,6 +44,9 @@ export default combineReducers({
     selectedId: (state = null, action = {}) => {
       switch (action.type) {
 
+        case constants.ADD_ACTIVITY:
+          return action.payload.id;
+
         case constants.SELECT_ACTIVITY:
           return action.payload.id;
 

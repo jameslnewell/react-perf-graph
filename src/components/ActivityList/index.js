@@ -44,7 +44,7 @@ class ActivityList extends React.Component {
 
         <h4>Activities</h4>
 
-        <select multiple className="activity-list" onChange={this.handleSelect.bind(this)} defaultValue={selectedActivity ? [selectedActivity.id] : []}>
+        <select multiple className="activity-list" onChange={this.handleSelect.bind(this)} value={selectedActivity ? [selectedActivity.id] : []}>
         {activities.map(activity => (
           <option key={activity.id} value={activity.id}>
             {activity.name}
